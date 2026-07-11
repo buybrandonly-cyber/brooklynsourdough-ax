@@ -13,7 +13,6 @@ import brooklynLogo from "@/assets/brooklyn-sourdough-header-logo.png";
 import orderBtnImg from "@/assets/custom-order-now.png";
 import whatsappBtnImg from "@/assets/custom-whatsapp.png";
 import giftBoxProduct from "@/assets/gift-box-product.jpg";
-import giftBoxHeroBg from "@/assets/gift-box-hero-bg.jpeg";
 import bakerWavesVideo from "@/assets/baker-waves-hand-on-table.mp4";
 import craftBrooklynSeal from "@/assets/craft-brooklyn-seal.png";
 import craftKosherSeals from "@/assets/craft-kosher-seals.png";
@@ -257,139 +256,63 @@ function CollectionsSection({ openOrder }: { openOrder: () => void }) {
 
 function GiftIntroSection({ openOrder }: { openOrder: () => void }) {
   const ref = useReveal<HTMLDivElement>();
-  const [inView, setInView] = React.useState(false);
-
-  React.useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry) setInView(entry.isIntersecting);
-      },
-      { threshold: 0.2 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [ref]);
 
   const features = [
     "Fresh artisan sourdough",
     "Handcrafted homemade dips",
-    "Beautifully packaged and ready to serve or gift",
+    "Beautifully packaged, ready to gift",
   ];
 
   return (
-    <div ref={ref} className="relative mt-14 overflow-hidden">
-      {/* Background image with slow zoom-out */}
-      <img
-        src={giftBoxHeroBg}
-        alt=""
-        aria-hidden="true"
-        className="absolute inset-0 h-full w-full object-cover"
-        style={{
-          transform: inView ? "scale(1)" : "scale(1.05)",
-          transition: "transform 2.8s cubic-bezier(0.22, 1, 0.36, 1)",
-          willChange: "transform",
-        }}
-      />
-      {/* Brand-green overlays for a cohesive site palette */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{ backgroundColor: "rgba(84, 114, 75, 0.78)" }}
-      />
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(84,114,75,0.55) 0%, rgba(84,114,75,0.25) 38%, rgba(84,114,75,0.92) 100%)",
-        }}
-      />
-
-      {/* Content */}
-      <div className="relative z-10 px-7 pt-16 pb-4 text-left">
-        <span
-          data-reveal
-          className="text-[11px] font-semibold uppercase tracking-[0.32em]"
-          style={{ color: "rgba(255,249,242,0.85)" }}
-        >
-          Ready to Share
+    <section ref={ref} className="mt-14 px-6">
+      <div data-reveal className="text-center">
+        <span className="text-[11px] font-semibold uppercase tracking-[0.22em] opacity-70" style={{ color: BRAND }}>
+          A Perfect Way to Share
         </span>
-
-        <h3
-          data-reveal
-          className="mt-4 font-display leading-[1.06]"
-          style={{ fontSize: "clamp(40px, 11vw, 64px)" }}
-        >
-          <span style={{ color: CREAM }}>A Perfect Way</span>
-          <br />
-          <span style={{ color: "#A6C695" }}>to Share</span>
+        <h3 className="mt-1 font-display text-[34px] leading-none" style={{ color: BRAND }}>
+          Gift Boxes
         </h3>
+      </div>
 
-        <p
-          data-reveal
-          className="mt-6 w-full max-w-[520px] text-[15px] leading-[1.65]"
-          style={{ color: "rgba(255,249,242,0.86)" }}
+      <div data-reveal className="mx-auto mt-6 max-w-[420px]">
+        <div
+          className="w-full aspect-[4/3] overflow-hidden rounded-3xl bg-white card-lift relative group"
+          style={{ boxShadow: "0 18px 40px -16px rgba(84,114,75,0.35)" }}
         >
-          Share the warmth of Brooklyn Sourdough with our thoughtfully curated gift boxes. Each box combines freshly baked artisan sourdough with handcrafted homemade dips, creating a beautifully packaged experience that&apos;s perfect for hosting, celebrating, or gifting.
-        </p>
+          <img
+            src={giftBoxProduct}
+            alt="Brooklyn Sourdough gift box"
+            loading="lazy"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+        </div>
 
-        <div className="mt-8 flex flex-col gap-5">
+        <div className="mt-5 flex flex-col gap-2.5">
           {features.map((feature) => (
-            <div key={feature} data-reveal className="flex items-center gap-3.5">
+            <div key={feature} className="flex items-center gap-3">
               <span
-                className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full"
-                style={{ backgroundColor: "rgba(166,198,149,0.22)", border: "1px solid rgba(166,198,149,0.5)" }}
+                className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
+                style={{ backgroundColor: "rgba(84,114,75,0.12)", border: "1px solid rgba(84,114,75,0.35)" }}
               >
-                <Check strokeWidth={2.5} className="h-3.5 w-3.5" style={{ color: "#A6C695" }} />
+                <Check strokeWidth={2.5} className="h-3 w-3" style={{ color: BRAND }} />
               </span>
-              <span className="text-[14.5px] font-medium" style={{ color: "rgba(255,249,242,0.92)" }}>
+              <span className="text-[14px] font-medium" style={{ color: BRAND }}>
                 {feature}
               </span>
             </div>
           ))}
         </div>
-      </div>
 
-      {/* Gift box slider — same section, order button under each box */}
-      <div className="relative z-10 pt-10 pb-14">
-        <div data-reveal className="px-7">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.22em]" style={{ color: "rgba(255,249,242,0.75)" }}>
-            Ready-to-share bakery sets
-          </span>
-          <h4 className="mt-1 font-display text-[34px] leading-none" style={{ color: CREAM }}>
-            Gift Boxes
-          </h4>
-        </div>
-        <div data-reveal className="mt-6 flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 px-7 scrollbar-none">
-          {[0, 1].map((i) => (
-            <div key={`gift-box-${i}`} className="snap-center shrink-0 w-[82%] flex flex-col items-center text-center group">
-              <div
-                className="w-full aspect-square overflow-hidden rounded-3xl relative"
-                style={{ boxShadow: "0 20px 44px -18px rgba(0,0,0,0.55)", border: "1px solid rgba(255,249,242,0.18)" }}
-              >
-                <img
-                  src={giftBoxProduct}
-                  alt="Brooklyn Sourdough gift box"
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-              </div>
-              <h5 className="mt-4 font-display text-[22px] leading-tight" style={{ color: CREAM }}>
-                Gift Box
-              </h5>
-              <button
-                onClick={openOrder}
-                className="mt-3 relative overflow-hidden rounded-full px-8 py-2.5 text-[15px] font-semibold transition-transform hover:scale-[1.06]"
-                style={{ backgroundColor: CREAM, color: BRAND }}
-              >
-                <span className="relative z-10">Order Now</span>
-                <span className="absolute inset-y-0 -left-1/3 w-1/3 bg-white/40 blur-sm animate-shine" />
-              </button>
-            </div>
-          ))}
-        </div>
+        <button
+          onClick={openOrder}
+          className="mt-6 w-full relative overflow-hidden rounded-full px-8 py-3 text-[15px] font-semibold transition-transform hover:scale-[1.03]"
+          style={{ backgroundColor: BRAND, color: CREAM }}
+        >
+          <span className="relative z-10">Order Now</span>
+          <span className="absolute inset-y-0 -left-1/3 w-1/3 bg-white/25 blur-sm animate-shine" />
+        </button>
       </div>
-    </div>
+    </section>
   );
 }
 
