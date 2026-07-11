@@ -13,6 +13,7 @@ import brooklynLogo from "@/assets/brooklyn-sourdough-header-logo.png";
 import orderBtnImg from "@/assets/custom-order-now.png";
 import whatsappBtnImg from "@/assets/custom-whatsapp.png";
 import giftBoxProduct from "@/assets/gift-box-product.jpg";
+import giftBoxHeroBg from "@/assets/gift-box-hero-bg.jpeg";
 import bakerWavesVideo from "@/assets/baker-waves-hand-on-table.mp4";
 import craftBrooklynSeal from "@/assets/craft-brooklyn-seal.png";
 import craftKosherSeals from "@/assets/craft-kosher-seals.png";
@@ -188,7 +189,8 @@ function Index() {
         {/* Collections */}
         <CollectionsSection openOrder={openOrder} />
 
-        <CraftStatsSection />
+        {/* Gift Boxes */}
+        <GiftIntroSection openOrder={openOrder} />
 
         {/* About */}
         <section id="about" ref={aboutRef} className="relative isolate aspect-[9/16] w-full overflow-hidden animate-fade-up" style={{ backgroundColor: CREAM }}>
@@ -213,8 +215,7 @@ function Index() {
           </div>
         </section>
 
-        {/* Gift Boxes */}
-        <GiftIntroSection openOrder={openOrder} />
+        <CraftStatsSection />
 
         <ReviewsSection />
         <DipsSection />
@@ -281,7 +282,7 @@ function GiftIntroSection({ openOrder }: { openOrder: () => void }) {
     <div ref={ref} className="relative mt-14 overflow-hidden">
       {/* Background image with slow zoom-out */}
       <img
-        src={giftBoxProduct}
+        src={giftBoxHeroBg}
         alt=""
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover"
@@ -294,13 +295,13 @@ function GiftIntroSection({ openOrder }: { openOrder: () => void }) {
       {/* Brand-green overlays for a cohesive site palette */}
       <div
         className="pointer-events-none absolute inset-0"
-        style={{ backgroundColor: "rgba(58, 80, 51, 0.78)" }}
+        style={{ backgroundColor: "rgba(84, 114, 75, 0.78)" }}
       />
       <div
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, rgba(74,100,65,0.55) 0%, rgba(58,80,51,0.25) 38%, rgba(47,66,41,0.85) 100%)",
+            "linear-gradient(180deg, rgba(84,114,75,0.55) 0%, rgba(84,114,75,0.25) 38%, rgba(84,114,75,0.92) 100%)",
         }}
       />
 
@@ -792,13 +793,14 @@ function FloatingWhatsApp() {
       aria-label="WhatsApp"
       className="fixed right-[max(1rem,calc((100vw-480px)/2+1rem))] bottom-5 z-50 flex items-center gap-2 animate-whatsapp-float transition-transform hover:scale-[1.03] active:scale-[0.97]"
     >
-      <span className="whitespace-nowrap rounded-full px-3.5 py-1.5 text-[12px] font-semibold shadow-lg" style={{ backgroundColor: CREAM, color: BRAND }}>
+      <span className="animate-contact-pop whitespace-nowrap rounded-full px-3.5 py-1.5 text-[12px] font-semibold shadow-lg" style={{ backgroundColor: CREAM, color: BRAND }}>
         Contact us
       </span>
       <img
         src={whatsappBtnImg}
         alt="WhatsApp"
-        className="h-16 w-16 rounded-full object-cover object-center"
+        className="h-16 w-16 object-contain mix-blend-multiply"
+        style={{ filter: "drop-shadow(0 6px 14px rgba(0,0,0,0.3))" }}
       />
     </a>
   );
