@@ -13,6 +13,7 @@ import brooklynLogo from "@/assets/brooklyn-sourdough-header-logo.png";
 import orderBtnImg from "@/assets/custom-order-now.png";
 import whatsappBtnImg from "@/assets/custom-whatsapp.png";
 import giftBoxProduct from "@/assets/gift-box-product.jpg";
+import giftBoxHeroBg from "@/assets/gift-box-hero-bg.jpeg";
 import bakerWavesVideo from "@/assets/baker-waves-hand-on-table.mp4";
 import craftBrooklynSeal from "@/assets/craft-brooklyn-seal.png";
 import craftKosherSeals from "@/assets/craft-kosher-seals.png";
@@ -188,6 +189,9 @@ function Index() {
         {/* Collections */}
         <CollectionsSection openOrder={openOrder} />
 
+        {/* Gift Boxes */}
+        <GiftIntroSection openOrder={openOrder} />
+
         <CraftStatsSection />
 
         {/* About */}
@@ -212,9 +216,6 @@ function Index() {
             </p>
           </div>
         </section>
-
-        {/* Gift Boxes */}
-        <GiftIntroSection openOrder={openOrder} />
 
         <ReviewsSection />
         <DipsSection />
@@ -281,7 +282,7 @@ function GiftIntroSection({ openOrder }: { openOrder: () => void }) {
     <div ref={ref} className="relative mt-14 overflow-hidden">
       {/* Background image with slow zoom-out */}
       <img
-        src={giftBoxProduct}
+        src={giftBoxHeroBg}
         alt=""
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover"
@@ -294,13 +295,13 @@ function GiftIntroSection({ openOrder }: { openOrder: () => void }) {
       {/* Brand-green overlays for a cohesive site palette */}
       <div
         className="pointer-events-none absolute inset-0"
-        style={{ backgroundColor: "rgba(58, 80, 51, 0.78)" }}
+        style={{ backgroundColor: "rgba(84, 114, 75, 0.78)" }}
       />
       <div
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, rgba(74,100,65,0.55) 0%, rgba(58,80,51,0.25) 38%, rgba(47,66,41,0.85) 100%)",
+            "linear-gradient(180deg, rgba(84,114,75,0.55) 0%, rgba(84,114,75,0.25) 38%, rgba(84,114,75,0.92) 100%)",
         }}
       />
 
