@@ -793,13 +793,14 @@ function FloatingWhatsApp() {
       aria-label="WhatsApp"
       className="fixed right-[max(1rem,calc((100vw-480px)/2+1rem))] bottom-5 z-50 flex items-center gap-2 animate-whatsapp-float transition-transform hover:scale-[1.03] active:scale-[0.97]"
     >
-      <span className="whitespace-nowrap rounded-full px-3.5 py-1.5 text-[12px] font-semibold shadow-lg" style={{ backgroundColor: CREAM, color: BRAND }}>
+      <span className="animate-contact-pop whitespace-nowrap rounded-full px-3.5 py-1.5 text-[12px] font-semibold shadow-lg" style={{ backgroundColor: CREAM, color: BRAND }}>
         Contact us
       </span>
       <img
         src={whatsappBtnImg}
         alt="WhatsApp"
-        className="h-16 w-16 rounded-full object-cover object-center"
+        className="h-16 w-16 object-contain mix-blend-multiply"
+        style={{ filter: "drop-shadow(0 6px 14px rgba(0,0,0,0.3))" }}
       />
     </a>
   );
