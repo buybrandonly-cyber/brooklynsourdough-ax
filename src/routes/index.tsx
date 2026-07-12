@@ -149,7 +149,7 @@ function Index() {
               ))}
             </div>
           </div>
-        {/* Sticky navigation header */}
+         {/* Sticky navigation header */}
         <header
           className="sticky top-0 z-50 h-[80px] flex items-center px-5 bg-white border-b border-black/5 transition-shadow duration-300"
           style={{ boxShadow: headerStuck ? "0 2px 10px rgba(0,0,0,0.08)" : "0 6px 24px -18px rgba(0,0,0,0.35)" }}
@@ -236,14 +236,19 @@ function Index() {
 function CollectionsSection({ openOrder }: { openOrder: () => void }) {
   const ref = useReveal<HTMLElement>();
   return (
-    <section id="menu" ref={ref} className="pt-16 pb-16 relative overflow-hidden">
-      <span className="pointer-events-none absolute -top-10 right-6 text-[140px] font-display opacity-[0.04] select-none" style={{ color: BRAND }}>菜</span>
-      <div data-reveal>
-        <span className="block text-center text-[11px] font-semibold tracking-[0.28em] uppercase opacity-70" style={{ color: BRAND }}>Handcrafted Selection</span>
+    <section id="menu" ref={ref} className="pt-20 pb-20 relative overflow-hidden">
+      <span className="pointer-events-none absolute -top-16 right-6 text-[140px] font-display opacity-[0.02] select-none" style={{ color: BRAND }}>菜</span>
+      
+      {/* Header with better spacing and typography */}
+      <div data-reveal className="mb-3">
+        <span className="block text-center text-[10px] font-semibold tracking-[0.3em] uppercase opacity-50" style={{ color: BRAND, letterSpacing: "0.15em" }}>Handcrafted Selection</span>
       </div>
-      <h2 data-reveal className="mt-2 font-display text-[60px] leading-[0.95] text-center px-4" style={{ color: BRAND, transform: "scaleY(1.20)", transformOrigin: "center", letterSpacing: "-0.5px" }}>
+      
+      <h2 data-reveal className="font-display text-[52px] md:text-[64px] leading-[1.1] text-center px-4 mb-16" style={{ color: BRAND, letterSpacing: "-0.02em", fontWeight: 700 }}>
         Taste our<br />Collections
       </h2>
+
+      {/* Premium Product Cards */}
       <ProductRail
         title="Sourdough"
         subtitle="Slow-fermented classics"
@@ -330,7 +335,7 @@ function GiftIntroSection({ openOrder }: { openOrder: () => void }) {
           className="mt-6 w-full max-w-[520px] text-[15px] leading-[1.65]"
           style={{ color: "rgba(255,249,242,0.86)" }}
         >
-          Share the warmth of Brooklyn Sourdough with our thoughtfully curated gift boxes. Each box combines freshly baked artisan sourdough with handcrafted homemade dips, creating a beautifully packaged experience that&apos;s perfect for hosting, celebrating, or gifting.
+          Share the warmth of Brooklyn Sourdough with our thoughtfully curated gift boxes. Each box combines freshly baked artisan sourdough with handcrafted homemade dips, creating a beautifully packaged experience that's perfect for hosting, celebrating, or gifting.
         </p>
 
         <div className="mt-8 flex flex-col gap-5">
@@ -456,22 +461,24 @@ function ProductRail({
   openOrder: () => void;
 }) {
   return (
-    <div data-reveal className="mt-12">
-      <div className="px-6 text-center">
-        <span className="text-[11px] font-semibold tracking-[0.22em] uppercase opacity-70" style={{ color: BRAND }}>{subtitle}</span>
-        <h3 className="mt-1 font-display text-[34px] leading-none" style={{ color: BRAND }}>{title}</h3>
+    <div data-reveal className="mt-2">
+      <div className="px-6 text-center mb-8">
+        <span className="text-[10px] font-semibold tracking-[0.3em] uppercase opacity-50" style={{ color: BRAND }}>Premium Quality</span>
+        <h3 className="mt-3 font-display text-[32px] md:text-[38px] leading-[1.2]" style={{ color: BRAND, fontWeight: 600 }}>{title}</h3>
+        <p className="mt-2 text-[13px] tracking-[0.08em] uppercase opacity-60" style={{ color: BRAND }}>{subtitle}</p>
       </div>
-      <div className="mt-6 flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 px-6 scrollbar-none">
+      <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 px-6 scrollbar-none">
         {[0, 1].map((i) => (
           <div key={`${title}-${i}`} className="snap-center shrink-0 w-full flex flex-col items-center text-center group">
-            <div className="w-full aspect-square overflow-hidden rounded-3xl bg-white card-lift relative" style={{ boxShadow: "0 18px 40px -16px rgba(0,91,79,0.35)" }}>
+            <div className="w-full aspect-square overflow-hidden rounded-2xl bg-white card-lift relative" style={{ boxShadow: "0 16px 48px -12px rgba(0,0,0,0.15)" }}>
               <img src={image} alt={imageAlt} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity" style={{ background: "linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.25))" }} />
+              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity" style={{ background: "linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.08))" }} />
             </div>
-            <h4 className="mt-4 font-display text-[24px] leading-tight" style={{ color: BRAND }}>{title}</h4>
-            <button onClick={openOrder} className="mt-4 relative overflow-hidden rounded-full px-8 py-2.5 text-[15px] font-semibold transition-transform hover:scale-[1.06]" style={{ backgroundColor: BRAND, color: CREAM }}>
+            <h4 className="mt-5 font-display text-[20px] leading-tight" style={{ color: BRAND }}>{title}</h4>
+            <p className="mt-2 text-[12px] opacity-60" style={{ color: BRAND }}>Artisan crafted & freshly baked</p>
+            <button onClick={openOrder} className="mt-5 relative overflow-hidden rounded-full px-10 py-2.5 text-[14px] font-semibold transition-transform hover:scale-[1.05] active:scale-[0.98]" style={{ backgroundColor: BRAND, color: CREAM }}>
               <span className="relative z-10">Order Now</span>
-              <span className="absolute inset-y-0 -left-1/3 w-1/3 bg-white/25 blur-sm animate-shine" />
+              <span className="absolute inset-y-0 -left-1/3 w-1/3 bg-white/15 blur-sm animate-shine" />
             </button>
           </div>
         ))}
@@ -491,7 +498,7 @@ function LocationModal({ onClose }: { onClose: () => void }) {
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-5 animate-fade-up" style={{ backgroundColor: "rgba(0,0,0,0.55)" }} onClick={onClose}>
       <div className="relative w-full max-w-[300px] rounded-[22px] p-4 pt-5" style={{ backgroundColor: CREAM }} onClick={(e) => e.stopPropagation()}>
-        <button aria-label="Close" onClick={onClose} className="absolute top-3 right-3 h-7 w-7 rounded-full border flex items-center justify-center hover:bg-black/5" style={{ borderColor: "rgba(0,0,0,0.15)", color: "#333" }}>
+        <button aria-label="Close" onClick={onClose} className="absolute top-3 right-3 h-7 w-7 rounded-full border flex items-center justify-center hover:bg-black/5" style={{ borderColor: "rgba(0,0,0,0.2)" }}>
           <X className="h-3 w-3" />
         </button>
 
@@ -591,7 +598,7 @@ function SideMenu({ onClose }: { onClose: () => void }) {
         <div className="mt-8 flex items-center gap-3">
           <a href="https://wa.me/17182127323" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="h-11 w-11 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition">
             <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden>
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.019-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.04 21.785h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.999-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.002-5.45 4.436-9.884 9.887-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.548 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.49-8.413z"/>
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.86-1.653-2.157-.173-.297-.018-.458.13-.606.12-.12.298-.312.446-.468.149-.156.198-.268.297-.446.099-.179.05-.335-.025-.468-.075-.133-.669-1.611-.916-2.206-.242-.579-.487-.501-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a8.06 8.06 0 00-4.094 1.111.803.803 0 00-.34.66c.015 1.017.335 2.847 1.455 4.597 1.312 2.01 3.14 3.053 5.342 3.053.897 0 1.775-.158 2.601-.47.318-.109.593.044.643.36l.563 3.751a.8.8 0 00-.928.896l.07.47a.8.8 0 00.896.71l2.82-.424.47-.07a.8.8 0 00.71-.897l-.424-2.82-.07-.47a.8.8 0 00-.897-.71l-.47.07-2.82.424a.8.8 0 00-.71.897" />
             </svg>
           </a>
           <a href="https://www.instagram.com/brooklyn.sourdough" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="h-11 w-11 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition">
@@ -720,7 +727,7 @@ function DeliverySection() {
       <div className="mt-12 flex flex-col items-center gap-6">
         <div className="w-full max-w-[320px] rounded-2xl bg-white py-5 px-6 flex items-center justify-center gap-3 card-lift" style={{ boxShadow: "0 12px 28px -16px rgba(0,0,0,0.25)" }}>
           <svg viewBox="0 0 24 24" className="h-7 w-7" fill="#EB1700" aria-hidden>
-            <path d="M23.07 8.69a4.9 4.9 0 0 0-4.36-2.69H1.4a.4.4 0 0 0-.28.68l3.2 3.2c.27.27.63.42 1.01.42h12.93c.85 0 1.55.7 1.55 1.55s-.7 1.55-1.55 1.55H8.84a.4.4 0 0 0-.28.68l3.2 3.2c.27.27.63.42 1.01.42h5.94c4.71 0 7.99-4.78 4.36-9.01Z"/>
+            <path d="M23.07 8.69a4.9 4.9 0 0 0-4.36-2.69H1.4a.4.4 0 0 0-.28.68l3.2 3.2c.27.27.63.42 1.01.42h12.93c.85 0 1.55.7 1.55 1.55s-.7 1.55-1.55 1.55H8.84a.4.4 0 0 0-.28.68l3.2 3.2c.27.27.6.42 1.01.42h11.94c.86 0 1.62-.47 2.02-1.24a2.02 2.02 0 0 0 .09-.77V10.1c0-.58-.13-1.13-.36-1.61z" />
           </svg>
           <span className="font-display text-[26px] tracking-tight" style={{ color: "#EB1700" }}>DoorDash</span>
         </div>
@@ -771,10 +778,12 @@ function Footer() {
       <div className="mt-10 flex gap-4 justify-center">
         <a href="https://wa.me/17182127323" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="rounded-full bg-white/10 p-3 hover:bg-white/20 transition">
           <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden>
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.019-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.04 21.785h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.999-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.002-5.45 4.436-9.884 9.887-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.548 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.49-8.413z"/>
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.86-1.653-2.157-.173-.297-.018-.458.13-.606.12-.12.298-.312.446-.468.149-.156.198-.268.297-.446.099-.179.05-.335-.025-.468-.075-.133-.669-1.611-.916-2.206-.242-.579-.487-.501-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a8.06 8.06 0 00-4.094 1.111.803.803 0 00-.34.66c.015 1.017.335 2.847 1.455 4.597 1.312 2.01 3.14 3.053 5.342 3.053.897 0 1.775-.158 2.601-.47.318-.109.593.044.643.36l.563 3.751a.8.8 0 00-.928.896l.07.47a.8.8 0 00.896.71l2.82-.424.47-.07a.8.8 0 00.71-.897l-.424-2.82-.07-.47a.8.8 0 00-.897-.71l-.47.07-2.82.424a.8.8 0 00-.71.897" />
           </svg>
         </a>
-        <a href="https://www.instagram.com/brooklyn.sourdough" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="rounded-full bg-white/10 p-3 hover:bg-white/20 transition"><Instagram className="h-5 w-5" /></a>
+        <a href="https://www.instagram.com/brooklyn.sourdough" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="rounded-full bg-white/10 p-3 hover:bg-white/20 transition">
+          <Instagram className="h-5 w-5" />
+        </a>
       </div>
       <div className="mt-10 pt-6 border-t border-white/15 text-center">
         <p className="font-display text-[18px] leading-tight">Brooklyn Sourdough Bakery</p>
@@ -791,16 +800,16 @@ function FloatingWhatsApp() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="WhatsApp"
-      className="fixed right-[max(1rem,calc((100vw-480px)/2+1rem))] bottom-5 z-50 flex items-center gap-2 animate-whatsapp-float transition-transform hover:scale-[1.03] active:scale-[0.97]"
+      className="fixed right-[max(1rem,calc((100vw-480px)/2+1rem))] bottom-5 z-50 flex items-center gap-2.5 animate-whatsapp-float transition-transform hover:scale-[1.05] active:scale-[0.95]"
     >
-      <span className="animate-contact-pop whitespace-nowrap rounded-full px-3.5 py-1.5 text-[12px] font-semibold shadow-lg" style={{ backgroundColor: CREAM, color: BRAND }}>
+      <span className="animate-contact-pop whitespace-nowrap rounded-full px-4 py-2 text-[13px] font-semibold" style={{ backgroundColor: CREAM, color: BRAND, boxShadow: "0 4px 12px rgba(0,0,0,0.15)" }}>
         Contact us
       </span>
       <img
         src={whatsappBtnImg}
         alt="WhatsApp"
-        className="h-16 w-16 object-contain mix-blend-multiply"
-        style={{ filter: "drop-shadow(0 6px 14px rgba(0,0,0,0.3))" }}
+        className="h-14 w-14 object-contain"
+        style={{ filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.2))" }}
       />
     </a>
   );
